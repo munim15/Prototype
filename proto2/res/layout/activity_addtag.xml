@@ -1,25 +1,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent" >
-
-    <TextView
-        android:id="@+id/textView1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginLeft="14dp"
-        android:layout_marginTop="20dp"
-        android:text="Title" />
-
-    <EditText
-        android:id="@+id/editText1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBaseline="@+id/textView1"
-        android:layout_alignBottom="@+id/textView1"
-        android:layout_centerHorizontal="true"
-        android:ems="10" />
+    android:layout_height="fill_parent"
+    >
 
     <RadioGroup
         android:id="@+id/radioGroup1"
@@ -27,39 +9,43 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/editText1"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="58dp" >
-
+        android:layout_marginTop="58dp"
+        android:orientation="horizontal" >
         <RadioButton
             android:id="@+id/radio0"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:checked="true"
-            android:text="Public Tag" />
+            android:text="Public Tag"
+            android:textSize="25sp" />
 
+      
         <RadioButton
             android:id="@+id/radio1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Private Tag" />
+            android:text="Private Tag"
+            android:textSize="25sp" />
 
     </RadioGroup>
 
     <Button
-        android:id="@+id/playback"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="49dp"
-        android:text="Play Back" />
-
-    <Button
         android:id="@+id/startrec"
-        android:layout_width="fill_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_above="@+id/playback"
-        android:layout_alignParentLeft="true"
-        android:text="Start Recording" />
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:background="@drawable/record_red" />
+
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="22dp"
+        android:layout_toLeftOf="@+id/startrec"
+        android:text="Title"
+        android:textSize="50sp" />
 
     <Button
         android:id="@+id/doneButton"
@@ -67,6 +53,30 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:text="Done" />
+        android:layout_marginBottom="70dp"
+        android:background="@drawable/buttonshape"
+        android:text="Place Tag"
+        android:textColor="#ffffff" />
+
+    <Button
+        android:id="@+id/playback"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/doneButton"
+        android:layout_alignLeft="@+id/doneButton"
+        android:layout_marginBottom="45dp"
+        android:background="@drawable/buttonshape"
+        android:textColor="#ffffff"
+        android:text="Play Back" />
+
+    <EditText
+        android:id="@+id/editText1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBaseline="@+id/textView1"
+        android:layout_alignBottom="@+id/textView1"
+        android:layout_alignLeft="@+id/startrec"
+        android:layout_marginLeft="79dp"
+        android:ems="10" />
 
 </RelativeLayout>

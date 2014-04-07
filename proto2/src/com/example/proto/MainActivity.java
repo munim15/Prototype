@@ -48,7 +48,11 @@ public class MainActivity extends Activity implements LocationListener {
 		Marker m = myMap.addMarker(marker);*/
 		//count = 0;
 		if(count == 0) {
-		db.put(count, new AudioFile("New Clue", 37.871993, -122.257862,""+count, new File(Environment.getExternalStorageDirectory(), "test.pcm")));
+		db.put(count, new AudioFile("Campanille Tour", 37.871993, -122.257862,""+count, new File(Environment.getExternalStorageDirectory(), "test3.pcm")));
+		count += 1;
+		db.put(count, new AudioFile("Lost Watch", 37.871934, -122.258120,""+count, new File(Environment.getExternalStorageDirectory(), "test2.pcm")));
+		count += 1;
+		db.put(count, new AudioFile("Geocaching Clue?", 37.873012, -122.258785,""+count, new File(Environment.getExternalStorageDirectory(), "test1.pcm")));
 		count += 1;
 		}
 		addMarkers();

@@ -28,37 +28,67 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class PlayBackActivity extends Activity{
-	private ImageButton playButton,pauseButton;
+	private Button playButton;
+	private ImageButton pauseButton;
 	private AudioTrack audioTrack;
 	private RatingBar ratingBar;
 	private Button btnSubmit;
+	private boolean paused = false;
 	
 	@Override
     protected void onCreate(Bundle savedInstanceState) {
           super.onCreate(savedInstanceState);
           setContentView(R.layout.activity_playback);
-          playButton = (ImageButton)findViewById(R.id.imageButton1);
-          pauseButton = (ImageButton)findViewById(R.id.imageButton2);
+          ((TextView) findViewById(R.id.titl)).setText(MainActivity.currAf.title);
+          playButton = (Button)findViewById(R.id.play);
+          //pauseButton = (ImageButton)findViewById(R.id.imageButton2);
           addListenerOnRatingBar();
       	  addListenerOnButton();
           playButton.setOnClickListener(new OnClickListener(){
 
 			@Override
 			public void onClick(View v) {
-				audioTrack.play();
+				//System.out.println("GSFSDFSADFASFASDFSDFADFSADFSADFADFASFSDFSDF");
+				//audioTrack.play();
+				Thread loopbackThread;
+				if(!paused) {
+					paused = true;
+					playButton.setBackground(getResources().getDrawable(R.drawable.stop_red));
+					loopbackThread = new Thread(new Runnable() {
+
+						@Override
+						public void run() {
+							playRecord();
+						}
+						
+					});
+					
+					loopbackThread.start();
+					//playRecord();
+				} else {
+					playButton.setBackground(getResources().getDrawable(R.drawable.play_red));
+					//System.out.println("TTTTTTTTTTTTTJJJJJJJJJJJJJJJJJKKKKKKKK");
+					audioTrack.pause();
+					//loopbackThread.interrupt();
+					//audioTrack.stop();
+					paused = false;
+				}
+
 			}
         	  
           });
           
-          pauseButton.setOnClickListener(new OnClickListener(){
+          /*pauseButton.setOnClickListener(new OnClickListener(){
 
 			@Override
 			public void onClick(View v) {
+				System.out.println("GSFSDFSADFASFASDFSDFADFSADFSADFADFASFSDFSDF");
 				audioTrack.pause();
+				paused = true;
 			}
         	  
-          });
-          playRecord();
+          });*/
+          //playRecord();
     }
 	
 	public void addListenerOnRatingBar() {
@@ -86,8 +116,9 @@ public class PlayBackActivity extends Activity{
 			public void onClick(View v) {
 	 
 				Toast.makeText(PlayBackActivity.this,
-					String.valueOf(ratingBar.getRating()),
-						Toast.LENGTH_SHORT).show();
+					String.valueOf("You Rated " + MainActivity.currAf.title + ": "
+				+ ratingBar.getRating() + "/4.0 \n Thanks for the feedback!"),
+						Toast.LENGTH_LONG).show();
 	 
 			}
 	 
@@ -127,10 +158,28 @@ public class PlayBackActivity extends Activity{
 		     AudioFormat.ENCODING_PCM_16BIT,
 		     bufferSizeInBytes,
 		     AudioTrack.MODE_STREAM);
+		// set setNotificationMarkerPosition accouding audio length
+		   audioTrack.setNotificationMarkerPosition(bufferSizeInBytes);
+
+		  // now add OnPlaybackPositionUpdateListener to audioTrack 
+		      audioTrack.setPlaybackPositionUpdateListener(
+		                               new AudioTrack.OnPlaybackPositionUpdateListener() {
+		          @Override
+		          public void onMarkerReached(AudioTrack track) {
+		              // do your work here....
+		        	  playButton.setBackground(getResources().getDrawable(R.drawable.play_red));
+		        	  paused = false;
+		          }
+
+				@Override
+				public void onPeriodicNotification(AudioTrack arg0) {
+					// TODO Auto-generated method stub
+					
+				}
+		      });
 		   
 		   audioTrack.play();
 		   audioTrack.write(audioData, 0, bufferSizeInBytes);
-
 		   
 		  } catch (FileNotFoundException e) {
 		   e.printStackTrace();

@@ -8,50 +8,56 @@
    android:paddingTop="@dimen/activity_vertical_margin"
    tools:context=".PlayBackActivity" >
 
-
-   <ImageButton
-      android:id="@+id/imageButton2"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:layout_marginLeft="14dp"
-      android:src="@android:drawable/ic_media_pause" />
-
-   <ImageButton
-      android:id="@+id/imageButton1"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:layout_marginLeft="100dp"
-      android:layout_toRightOf="@id/imageButton1"
-      android:src="@android:drawable/ic_media_play" />
-
-   
-   <TextView
+    <TextView
         android:id="@+id/lblRateMe"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Rate Me"
+        android:layout_centerVertical="true"
         android:paddingTop="10dip"
-        android:layout_marginTop="100dip"
-        android:layout_below="@id/imageButton2"
+        android:text="Rate Me"
         android:textAppearance="?android:attr/textAppearanceMedium" />
- 
-    <RatingBar
-        android:id="@+id/ratingBar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:numStars="4"
-        android:stepSize="1.0"
-        android:rating="2.0"
-        android:layout_marginTop="50dip"
-        android:layout_below="@id/lblRateMe" />
- 
+
     <Button
         android:id="@+id/btnSubmit"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dip"
-        android:layout_below="@id/ratingBar"
-        android:text="Submit" />
- 
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="101dp"
+        android:background="@drawable/buttonshape"
+        android:text="Submit Rating"
+        android:textColor="#ffffff" />
+
+    <RatingBar
+        android:id="@+id/ratingBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/lblRateMe"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="73dp"
+        android:numStars="4"
+        android:rating="2.0"
+        android:stepSize="1.0" />
+
+    <TextView
+        android:id="@+id/titl"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/lblRateMe"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="15dp"
+        android:text="Title"
+        android:textStyle="bold"
+        android:textSize="32sp"
+        android:textAppearance="?android:attr/textAppearanceLarge" />
+
+    <Button
+        android:id="@+id/play"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/lblRateMe"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="28dp"
+        android:background="@drawable/play_red" />
  
 </RelativeLayout>

@@ -71,7 +71,8 @@ public class AddTagActivity extends Activity {
 		@Override
 		public void onClick(View arg0) {
 			if (!recording) {
-			startRec.setText("Stop Recording");
+			startRec.setBackground(getResources().getDrawable(R.drawable.stop_red));
+			//startRec.setText("Stop Recording");
 			Thread recordThread = new Thread(new Runnable(){
 
 				@Override
@@ -84,7 +85,8 @@ public class AddTagActivity extends Activity {
 			
 			recordThread.start();
 			} else {
-				startRec.setText("Start Recording");
+				startRec.setBackground(getResources().getDrawable(R.drawable.record_red));
+				//startRec.setText("Start Recording");
 				recording = false;
 			}
 
@@ -136,7 +138,7 @@ public class AddTagActivity extends Activity {
 	
 	private void startRecord(){
 
-		File file = new File(Environment.getExternalStorageDirectory(), "test2.pcm"); 
+		File file = new File(Environment.getExternalStorageDirectory(), "test5.pcm"); 
 				
 		try {
 			file.createNewFile();
